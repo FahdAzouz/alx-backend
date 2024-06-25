@@ -22,9 +22,11 @@ class LFUCache(BaseCaching):
         if key is None or item is None:
             return
 
-        if len(self.cache_data) >= self.MAX_ITEMS and key not in self.cache_data:
+        if (len(self.cache_data) >= self.MAX_ITEMS and
+                key not in self.cache_data):
             lfu_key = min(self.usage, key=self.usage.get)
-            lfu_keys = [k for k, v in self.usage.items() if v == self.usage[lfu_key]]
+            lfu_keys = [k for k, v in self.usage.items()
+                        if v == self.usage[lfu_key]]
             if len(lfu_keys) > 1:
                 lru_among_lfu = min(lfu_keys, key=lambda k: self.lru[k])
                 del self.cache_data[lru_among_lfu]
