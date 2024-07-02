@@ -20,7 +20,7 @@ babel = Bable(app)
 @app.route('/', strict_slashes=False)
 def index() -> str:
     """render the html file"""
-    return render_template("templates/index.html")
+    return render_template("1-index.html")
 
 
 if __name__ == '__main__':
